@@ -1,0 +1,58 @@
+{% load crispy_forms_tags %}
+<!doctype html>
+<html>
+    <head>
+        <title>Subscribe to CSI e-Magazine</title>
+        <!-- <style>
+
+            @import "compass/css3";
+
+            input[type=text], textarea {
+            @include transition(all 0.30s ease-in-out);
+            outline: none;
+            padding: 3px 0px 3px 3px;
+            margin: 5px 1px 3px 0px;
+            border: 1px solid #DDDDDD;
+            }
+            
+            input[type=text]:focus, textarea:focus {
+            @include box-shadow(0 0 5px rgba(81, 203, 238, 1));
+            padding: 3px 0px 3px 3px;
+            margin: 5px 1px 3px 0px;
+            border: 1px solid rgba(81, 203, 238, 1);
+            }
+
+            label {
+            width: 150px;
+            float: left;
+            }
+
+            body {
+            padding: 20px;
+            }
+
+        </style> -->
+    </head>
+    
+    <body>
+        <div class="newsletter_signup_form">
+            {% if messages %}
+                {% for message in messages %}
+
+                    <div {% if message.tags %} class="{{ message.tags }}" {% endif %} role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+            {% else %}
+      
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit">Subscribe</button>
+                </form>
+            {% endif %}
+        </div>
+    </body>
+</html>

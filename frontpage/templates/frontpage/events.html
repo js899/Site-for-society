@@ -1,0 +1,100 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<head>
+    <title>Upcoming Events</title>
+    <link rel="shortcut icon" href="{% static '/images/favicon.ico' %}"/>
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .fields {
+            display: block;
+        }
+
+    </style>
+</head>
+
+    <script>
+        $(document).ready(function() {
+            // messages timeout for 10 sec 
+            setTimeout(function() {
+                $('.message').fadeOut('slow');
+            }, 4000); // <-- time in milliseconds
+            // delete message
+            $('.del-msg').live('click',function(){
+                $('.del-msg').parent().attr('style', 'display:none;');
+            })
+        });
+    </script>
+
+
+
+<body>
+
+    {% if events %}
+        {% for event in events %}
+        {% if forloop.first %}
+        <body background="{{ event.image.url }}">
+        <!-- <img src='{{ event.image.url }}' style="height: 100vh;width: 99vw;"> -->
+        <!-- <a href="#event-register-form">Register</a> -->
+            
+            <div id="event-register-form" style="background-color: white; padding: 20px; opacity:0.94; width: max-content;">
+                <h1>{{ event.title}}</h1>
+                Will be held on {{ event.date }},
+                {{ event.time }},
+                at {{ event.venue }}
+
+                <h3>Register here</h3>
+                <form class="reg-forms" method="POST">
+                    {% csrf_token %}
+                    <div class = "fields">
+                        <!-- {{ form|crispy }} -->
+                        {{ form.name|as_crispy_field }}
+                        <br>
+                        {{ form.branch|as_crispy_field }}
+                        <br>
+                        {{ form.year|as_crispy_field }}
+                        <br>
+                        {{ form.email|as_crispy_field }}
+
+                        <br>
+                        Not for participants.
+                        <br>
+                        {{ form.present|as_crispy_field }}
+                    </div>
+                        
+
+                    <br>
+                    <input type="submit" class="button" value="Ready">
+                </form>
+
+                {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                    <a href="" class="del-msg">&times;</a>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endfor %}
+    {% else %}
+        <h1>No active/upcoming events right now. If any event is going on currently, offline registration may/ may not be there.</h1>
+    {% endif %}        
+
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <div style="background-color: whitesmoke; width: max-content;">
+        <h2><a href="#" style="color: orangered;">Click to see past events</h2>
+    </div>
+
+</div>
+
+</body>
+
+</html>

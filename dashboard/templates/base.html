@@ -1,0 +1,23 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+
+<head>
+    <title>Dashboard</title>
+    <link rel="shortcut icon" href="{% static '/images/favicon.ico' %}"/>
+</head>
+
+<body>
+    <header class = "header">
+        <form class="logout-link" action="{% url 'logout' %}" method="POST" style="float:right;">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </header>
+
+    {% block main %}
+    {% endblock %}
+</body>
+
+</html>
+

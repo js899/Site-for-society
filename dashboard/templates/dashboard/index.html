@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block main%}
+    <!-- <style>
+        #eventForm{
+            display: block;
+        }
+    </style> -->
+    <!-- <script type="text/javascript">
+        //document.getElementById("newEventButton").onclick = 
+        /* function open(){
+            document.getElementById("eventForm").style.display = "block";
+        }
+        
+        function close(){
+            document.getElementById("eventForm").style.display = "none";
+        } */
+    </script> -->
+
+    <div>
+        <!-- <button onclick="open()">Create Event</button> -->
+        <h3>Create Event</h3>
+        <form id="eventForm" method="POST" action = "{url 'createevent'}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>            
+            <button type="submit">Create !</button>
+            <!-- <button onclick="close()">Hide</button> -->
+        </form>
+    </div>
+    
+    {% if events %}
+    <h3>Events created till now</h3>
+    {% for event in events %}
+        <h4>{{ event.title }}</h4>
+
+    {% endfor %}
+    {% endif %}
+
+    <form id="post_form" method="post" action = "{% url 'addclicks' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for hidden in detailForm.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in detailForm %}
+            {{ field|as_crispy_field }} <br />
+        {% endfor %}
+
+        {{ formset_image.management_form }}
+        {% for form in formset_image %}
+            {{ form }}
+        {% endfor %}
+        <button type="submit" name="submit">Submit</button>
+    </form>
+
+    <br><br><br><a href = "{% url 'attendance' %}" target="blank_" >Create attendance sheet</a>
+
+{% endblock %}
+<!-- event/participant deletion -->
+<!-- <form method="POST">
+            Do you want to delete the event <h4>{{ event.title }}</h4>? This would delete its participant database also.
+            For confirmation please enter the name of the event here. {{ form|as_crispy_field }}
+            <button type="submit">Delete current event</button>
+        </form> -->
