@@ -36,7 +36,7 @@
 
     {% if events %}
         {% for event in events %}
-        {% if forloop.first %}
+        {% if forloop.last %}
         <body background="{{ event.image.url }}">
         <!-- <img src='{{ event.image.url }}' style="height: 100vh;width: 99vw;"> -->
         <!-- <a href="#event-register-form">Register</a> -->
@@ -81,7 +81,7 @@
         {% endif %}
         {% endfor %}
     {% else %}
-        <h1>No active/upcoming events right now. If any event is going on currently, offline registration may/ may not be there.</h1>
+        <h1>No active/upcoming events right now. If any event is going on currently, it's online registration must have been closed, offline registration maybe there at the venue.</h1>
     {% endif %}        
 
     <br>

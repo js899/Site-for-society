@@ -12,6 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.forms.models import modelformset_factory
 from .forms import *
+from dateutil.parser import parse
+import datetime
 
 # Create your views here.
 
@@ -24,13 +26,26 @@ def logout(request):
 #     return redirect('frontpage')
 
 def EventPage(request):
+    d = datetime.date.today()
+    t = datetime.datetime.now().time()
+    dt = datetime.datetime.combine(d, t)
+    event = Event.objects.last()
+    till_date = event.date
+    till_time = event.time
+    till_date_time = datetime.datetime.combine(till_date, till_time)
+
     if request.method == 'POST':
         events = Event.objects.all()
         form = registerForm(request.POST)
         args = {'events':events, 'form':form }
-        if form.is_valid():
-            form.save(request.POST)
-            messages.success(request, "Thank you for registering. See you at the event.")
+        if(till_date_time > dt):
+            if form.is_valid():
+                form.save(request.POST)
+                messages.success(request, "Thank you for registering. See you at the event.")
+                return HttpResponseRedirect('')
+        else:
+            messages.warning(request, "Online registrations are closed now. If you still want to participate, you can get yourself registered at the venue. Thank You.")
+            return HttpResponseRedirect('')
         return render(request, "frontpage/events.html", args)
     else:
         events = Event.objects.all()
@@ -39,8 +54,6 @@ def EventPage(request):
         return render(request, "frontpage/events.html", args)
 
 
-#@user_passes_test(email_check)
-#login_required(function)
 @login_required(login_url='frontpage')
 def dash(request):
     events = Event.objects.all()
@@ -49,6 +62,7 @@ def dash(request):
         args = {'form':form , 'events':events}
         if form.is_valid():
             form.save(request.POST)
+            return HttpResponseRedirect('')
         return render(request, 'dashboard/index.html',args)
     else:
         form = createEventForm()
