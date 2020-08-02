@@ -12,12 +12,12 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.forms.models import modelformset_factory
 from .forms import *
-<<<<<<< HEAD
+#<<<<<<< HEAD
 import datetime 
-=======
+#=======
 from dateutil.parser import parse
 import datetime
->>>>>>> f94c014c3dc66f3e0751b6e8cfa3e2c616d57e60
+#>>>>>>> f94c014c3dc66f3e0751b6e8cfa3e2c616d57e60
 
 # Create your views here.
 
@@ -31,7 +31,7 @@ def logout(request):
 
 
 def EventPage(request):
-<<<<<<< HEAD
+#<<<<<<< HEAD
     current_dt = datetime.datetime.combine(datetime.date.today(), datetime.datetime.now().time())
     event = Event.objects.last()
     event_dt = datetime.datetime.combine(event.date, event.time)
@@ -49,7 +49,7 @@ def EventPage(request):
             register = registerForm()
             args = {'events':events, 'form':register}
             return render(request, "frontpage/events.html", args)
-=======
+#=======
     d = datetime.date.today()
     t = datetime.datetime.now().time()
     dt = datetime.datetime.combine(d, t)
@@ -71,7 +71,7 @@ def EventPage(request):
             messages.warning(request, "Online registrations are closed now. If you still want to participate, you can get yourself registered at the venue. Thank You.")
             return HttpResponseRedirect('')
         return render(request, "frontpage/events.html", args)
->>>>>>> f94c014c3dc66f3e0751b6e8cfa3e2c616d57e60
+#>>>>>>> f94c014c3dc66f3e0751b6e8cfa3e2c616d57e60
     else:
         return HttpResponse("The Registrations Are Closed Now.If you still want to Participate then register yourself at the venue.Thank You...")
 
