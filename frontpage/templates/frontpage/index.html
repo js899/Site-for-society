@@ -5,6 +5,7 @@
         <title>CSI OFFICIAL</title>
         <link rel="shortcut icon" href="{% static '/images/favicon.ico' %}"/>
         <link rel="stylesheet" href="static/css/styles.css">
+        <link rel="stylesheet" href="static/css/style.css">
         <script type="text/javascript" src="static/js/scripts.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -31,7 +32,6 @@
                 </div>  
             <!--</a>-->
             <a href="#about" class = "shide">About</a>
-            <a href="{% url 'newsletter_signup' %}" class = "shide" target="_blank" >Newsletter</a>
             <a href="{% url 'events' %}" class = "shide" target="_blank" ss>Events</a>
             <a href="javascript:void(0);" class="icon shide" onclick="myFunction()">
                 <i class="fa fa-bars"></i>
@@ -52,7 +52,7 @@
         </script> 
         
         <div id = "particles-js">
-            <h1 style="color: white;">EAT<br>SLEEP<br>CODE<br>REPEAT<br>Welcome to the CSI, students chapter, GNDEC.</h1>
+            <h1 style="color: white;">Welcome to the Computer Society Of India, Students Chapter, GNDEC.</h1>
         </div>
         <script type="text/javascript" src="/static/js/particles.js"></script>
         <script type="text/javascript" src="/static/js/particles.min.js"></script>
@@ -73,6 +73,23 @@
             </p>
         </div>
         
+        <!-- Newsletter Subscription -->
+        
+        <div class="main">
+        <form id="singular-form" action="{% url 'subscribe' %}" method="POST">
+            {% csrf_token %}
+            <button class="shown" type="button" id="subs">Subscribe To Newsletter</button>
+            <div id="email-input">
+                <input type="email" placeholder="E-mail" id="email" name="email">
+                <button type="button" >Add Me</button>
+            </div>
+            <div id="success">Congrats!</div>
+        </form>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script  src="static/js/function.js"></script>
+        
+        <!-- Newsletter Subscription -->
         
         <div class="footer-social-links">
             <h1 style="color: white; margin-left: 20px;">Connect</h1>
@@ -96,7 +113,6 @@
                 <a href="https://www.guru.gndec.ac.in" style="color: white;">Guru.gndec</a>
             </p>
 
-            <p>Made With <i class="fa fa-heart" style="color:red;"></i> By JS8</p>
             <script>
                 var myIndex = 0;
                 carousel();    

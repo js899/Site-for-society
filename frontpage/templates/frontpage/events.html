@@ -36,7 +36,7 @@
 
     {% if events %}
         {% for event in events %}
-        {% if forloop.first %}
+        {% if forloop.last %}
         <body background="{{ event.image.url }}">
         <!-- <img src='{{ event.image.url }}' style="height: 100vh;width: 99vw;"> -->
         <!-- <a href="#event-register-form">Register</a> -->
@@ -91,6 +91,10 @@
     
     <div style="background-color: whitesmoke; width: max-content;">
         <h2><a href="#" style="color: orangered;">Click to see past events</h2>
+    </div>
+
+    <div style="background-color: whitesmoke; width: max-content;">
+        <h2><a href="{% url 'show_gallery' %}" style="color: orangered;">Click to see Event Gallery</h2>
     </div>
 
 </div>

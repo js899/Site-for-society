@@ -25,7 +25,7 @@ SECRET_KEY = '65z0xyr8_5%j6zwg33g+@n%+f^sz_agohn)a96ih$k1t)u(94d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['code.gndec.ac.in','127.0.0.1']
+ALLOWED_HOSTS = ['code.gndec.ac.in','127.0.0.1', 'localhost']
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'jaideepjssingh@gmail.com'
 EMAIL_HOST_PASSWORD = 'pajasGMmanar*99'
@@ -35,6 +35,7 @@ EMAIL_USE_TLS = True
 # Application definition
 
 INSTALLED_APPS = [
+    'gallery',
     'frontpage',
     'forum',
     'dashboard',
@@ -116,7 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Calcutta'
 
 USE_I18N = True
 

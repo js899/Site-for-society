@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.forms.models import modelformset_factory
 from .forms import *
+import datetime 
 
 # Create your views here.
 
@@ -23,21 +24,27 @@ def logout(request):
 # def check():
 #     return redirect('frontpage')
 
-def EventPage(request):
-    if request.method == 'POST':
-        events = Event.objects.all()
-        form = registerForm(request.POST)
-        args = {'events':events, 'form':form }
-        if form.is_valid():
-            form.save(request.POST)
-            messages.success(request, "Thank you for registering. See you at the event.")
-        return render(request, "frontpage/events.html", args)
-    else:
-        events = Event.objects.all()
-        register = registerForm()
-        args = {'events':events, 'form':register}
-        return render(request, "frontpage/events.html", args)
 
+def EventPage(request):
+    current_dt = datetime.datetime.combine(datetime.date.today(), datetime.datetime.now().time())
+    event = Event.objects.last()
+    event_dt = datetime.datetime.combine(event.date, event.time)
+    if event_dt >= current_dt:
+        if request.method == 'POST':
+            events = Event.objects.all()
+            form = registerForm(request.POST)
+            args = {'events':events, 'form':form }
+            if form.is_valid():
+                form.save(request.POST)
+                messages.success(request, "Thank you for registering. See you at the event.")
+            return render(request, "frontpage/events.html", args)
+        else:
+            events = Event.objects.all()
+            register = registerForm()
+            args = {'events':events, 'form':register}
+            return render(request, "frontpage/events.html", args)
+    else:
+        return HttpResponse("The Registrations Are Closed Now.If you still want to Participate then register yourself at the venue.Thank You...")
 
 #@user_passes_test(email_check)
 #login_required(function)
@@ -104,4 +111,23 @@ def addEventClicks(request):
         args = {'detailForm': detailForm, 'formset': formset_image}
         return render(request, 'dashboard/attendance.html', args,
                 )#context_instance = RequestContext(request))
+
+
+
+# Uploading Images In Gallery 
+def event_image_view(request): 
+
+	if request.method == 'POST': 
+		form = GalleryForm(request.POST, request.FILES) 
+
+		if form.is_valid(): 
+			form.save() 
+			return redirect('success') 
+	else: 
+		form = GalleryForm() 
+	return render(request, 'dashboard/event_image_form.html', {'form' : form}) 
+
+
+def success(request): 
+	return HttpResponse('successfully uploaded') 
 

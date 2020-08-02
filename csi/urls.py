@@ -25,6 +25,8 @@ from frontpage import views as frontviews
 from dashboard import views as dashviews
 from forum import views as forumviews
 from newsletters import views as newsviews
+from gallery import views as galleryviews
+from dashboard.views import *
 
 # if settings.DEBUG:
 #         urlpatterns += static(settings.MEDIA_URL,
@@ -33,18 +35,20 @@ from newsletters import views as newsviews
 urlpatterns = [
     url('admin/', admin.site.urls),
     path('', frontviews.login, name = "login"),
+    path('subscribe', newsviews.subscribe, name = "subscribe"),
     url(r'^frontpage/$', frontviews.login, name = "frontpage"),
+    url(r'^show_gallery/$', galleryviews.show_gallery, name = "show_gallery"),
     url(r'^dashboard/$', dashviews.dash, name = "dashboard"),#require login to fix
     url(r'^createevent/$', dashviews.dash, name = "createevent"),
     url(r'^$', dashviews.logout, name = "logout"),
     url(r'^forum/$', forumviews.forumpage, name = 'forum'),
     url(r'^events/$', dashviews.EventPage, name = 'events'),
     url(r'^attendance/$', dashviews.attendance, name = 'attendance'),
-    url(r'^newsletter_signup/$', newsviews.newsletter_signup, name = 'newsletter_signup'),
-    url(r'^newsletter_unsubscribe/$', newsviews.newsletter_unsubscribe, name = 'newsletter_unsubscribe'),
     url(r'^addclicks/$', dashviews.addEventClicks, name = 'addclicks'),
+    path('image_upload', event_image_view, name = 'image_upload'), 
+    path('success', success, name = 'success'), 
 ]
 
 if settings.DEBUG: 
         urlpatterns += static(settings.MEDIA_URL, 
-                              document_root=settings.MEDIA_ROOT) 
+                              document_root=settings.MEDIA_ROOT)

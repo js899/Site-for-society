@@ -2,6 +2,8 @@ from django import forms
 from dashboard.models import Event, Participant, Click
 import datetime
 from datetime import date, datetime
+from .models import *
+
 
 class createEventForm(forms.ModelForm):
     class Meta:
@@ -44,3 +46,14 @@ class ClicksForm(forms.ModelForm):
 #     class class Meta:
 #         model = Attendance
 #         fields = "__all__"
+
+
+
+# Uploading Images In Gallery
+
+class GalleryForm(forms.ModelForm): 
+
+	class Meta: 
+		model = Gallery 
+		fields = ['name', 'event_Main_Img'] 
+

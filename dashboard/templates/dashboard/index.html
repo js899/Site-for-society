@@ -20,7 +20,7 @@
     <div>
         <!-- <button onclick="open()">Create Event</button> -->
         <h3>Create Event</h3>
-        <form id="eventForm" method="POST" action = "{url 'createevent'}" enctype="multipart/form-data">
+        <form id="eventForm" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
             <br>            
@@ -55,6 +55,8 @@
     </form>
 
     <br><br><br><a href = "{% url 'attendance' %}" target="blank_" >Create attendance sheet</a>
+    
+    <br><br><br><a href = "{% url 'image_upload' %}" target="blank_" >Upload Images</a>
 
 {% endblock %}
 <!-- event/participant deletion -->
