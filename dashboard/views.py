@@ -1,3 +1,6 @@
+# Send Newsletter
+import smtplib
+
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
@@ -5,6 +8,7 @@ from dashboard.forms import createEventForm
 from django.contrib import messages
 #from django.views.generic import TemplateView
 from dashboard.models import Event, Participant, Click
+from newsletters.models import NewsletterUser
 from dashboard.forms import registerForm
 from django.contrib.auth.decorators import login_required
 #from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,12 +16,11 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.forms.models import modelformset_factory
 from .forms import *
-#<<<<<<< HEAD
+
 import datetime 
-#=======
+
 from dateutil.parser import parse
 import datetime
-#>>>>>>> f94c014c3dc66f3e0751b6e8cfa3e2c616d57e60
 
 # Create your views here.
 
@@ -31,7 +34,7 @@ def logout(request):
 
 
 def EventPage(request):
-#<<<<<<< HEAD
+
     current_dt = datetime.datetime.combine(datetime.date.today(), datetime.datetime.now().time())
     event = Event.objects.last()
     event_dt = datetime.datetime.combine(event.date, event.time)
@@ -49,7 +52,7 @@ def EventPage(request):
             register = registerForm()
             args = {'events':events, 'form':register}
             return render(request, "frontpage/events.html", args)
-#=======
+
     d = datetime.date.today()
     t = datetime.datetime.now().time()
     dt = datetime.datetime.combine(d, t)
@@ -71,7 +74,7 @@ def EventPage(request):
             messages.warning(request, "Online registrations are closed now. If you still want to participate, you can get yourself registered at the venue. Thank You.")
             return HttpResponseRedirect('')
         return render(request, "frontpage/events.html", args)
-#>>>>>>> f94c014c3dc66f3e0751b6e8cfa3e2c616d57e60
+
     else:
         return HttpResponse("The Registrations Are Closed Now.If you still want to Participate then register yourself at the venue.Thank You...")
 
@@ -158,4 +161,29 @@ def event_image_view(request):
 
 def success(request): 
 	return HttpResponse('successfully uploaded') 
+
+
+
+# Uploading PDF For Newsletter 
+def pdf_view(request): 
+
+	if request.method == 'POST': 
+		form = NewsletterForm(request.POST, request.FILES) 
+
+		if form.is_valid(): 
+			form.save() 
+			mail=smtplib.SMTP('smtp.gmail.com',587)
+			mail.ehlo()
+			mail.starttls()
+			mail.login('etgaming2432@gmail.com','wEbsTEr333')
+			obj = Newsletter.objects.last()
+			mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
+			for i in range(len(mail_list)):
+			    mail.sendmail('etgaming2432@gmail.com',mail_list[i],f'Subject: {obj.subject}\n\n'+obj.message)
+			mail.quit()
+			return redirect('success')
+			
+	else: 
+		form = NewsletterForm() 
+	return render(request, 'dashboard/pdf_upload.html', {'form' : form})
 

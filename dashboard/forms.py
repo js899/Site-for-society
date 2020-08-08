@@ -57,3 +57,11 @@ class GalleryForm(forms.ModelForm):
 		model = Gallery 
 		fields = ['name', 'event_Main_Img'] 
 
+#Uploading PDF For Newsletter    
+
+class NewsletterForm(forms.ModelForm): 
+
+	class Meta: 
+		model = Newsletter 
+		fields = ['subject', 'message', 'pdf'] 
+
