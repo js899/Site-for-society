@@ -175,7 +175,7 @@ def pdf_view(request):
 			mail=smtplib.SMTP('smtp.gmail.com',587)
 			mail.ehlo()
 			mail.starttls()
-			mail.login('etgaming2432@gmail.com','wEbsTEr333')
+			mail.login('Email','Password')
 			obj = Newsletter.objects.last()
 			mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
 			for i in range(len(mail_list)):
