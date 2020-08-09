@@ -8,7 +8,7 @@ from django.conf import settings
 def subscribe(request):
     if request.method == "POST":
         n = NewsletterUser(email=request.POST.get('email'))
-        if '@gmail.com' in str(n):
+        if '@' in str(n):
             n.save()
             return render(request, "frontpage/index.html")
         else:

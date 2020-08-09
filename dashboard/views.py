@@ -1,4 +1,4 @@
-from django.contrib.auth import logout
+#from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from dashboard.forms import createEventForm
@@ -31,25 +31,6 @@ def logout(request):
 
 
 def EventPage(request):
-#<<<<<<< HEAD
-    current_dt = datetime.datetime.combine(datetime.date.today(), datetime.datetime.now().time())
-    event = Event.objects.last()
-    event_dt = datetime.datetime.combine(event.date, event.time)
-    if event_dt >= current_dt:
-        if request.method == 'POST':
-            events = Event.objects.all()
-            form = registerForm(request.POST)
-            args = {'events':events, 'form':form }
-            if form.is_valid():
-                form.save(request.POST)
-                messages.success(request, "Thank you for registering. See you at the event.")
-            return render(request, "frontpage/events.html", args)
-        else:
-            events = Event.objects.all()
-            register = registerForm()
-            args = {'events':events, 'form':register}
-            return render(request, "frontpage/events.html", args)
-#=======
     d = datetime.date.today()
     t = datetime.datetime.now().time()
     dt = datetime.datetime.combine(d, t)
@@ -71,9 +52,12 @@ def EventPage(request):
             messages.warning(request, "Online registrations are closed now. If you still want to participate, you can get yourself registered at the venue. Thank You.")
             return HttpResponseRedirect('')
         return render(request, "frontpage/events.html", args)
-#>>>>>>> f94c014c3dc66f3e0751b6e8cfa3e2c616d57e60
     else:
-        return HttpResponse("The Registrations Are Closed Now.If you still want to Participate then register yourself at the venue.Thank You...")
+        events = Event.objects.all()
+        register = registerForm()
+        args = {'events':events, 'form':register}
+        return render(request, "frontpage/events.html", args)
+
 
 @login_required(login_url='frontpage')
 def dash(request):

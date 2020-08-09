@@ -27,8 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['code.gndec.ac.in','127.0.0.1', 'localhost']
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'jaideepjssingh@gmail.com'
-EMAIL_HOST_PASSWORD = 'pajasGMmanar*99'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -130,7 +130,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATIC_URL = '/static/'
 
