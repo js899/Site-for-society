@@ -61,13 +61,3 @@ class Gallery(models.Model):
     
     def __str__(self):
     	return self.name
-    	
-#Uploading PDF For Newsletter    
-    	
-class Newsletter(models.Model): 
-    subject = models.CharField(max_length=50)
-    message = models.CharField(max_length=200) 
-    pdf = models.FileField(upload_to='documents/') 
-    
-    def __str__(self):
-    	return self.subject

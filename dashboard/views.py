@@ -164,26 +164,18 @@ def success(request):
 
 
 
-# Uploading PDF For Newsletter 
+# Sending PDF For Newsletter
+
 def pdf_view(request): 
 
 	if request.method == 'POST': 
-		form = NewsletterForm(request.POST, request.FILES) 
-
-		if form.is_valid(): 
-			form.save() 
-			mail=smtplib.SMTP('smtp.gmail.com',587)
-			mail.ehlo()
-			mail.starttls()
-			mail.login('Email','Password')
-			obj = Newsletter.objects.last()
-			mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
-			for i in range(len(mail_list)):
-			    mail.sendmail('etgaming2432@gmail.com',mail_list[i],f'Subject: {obj.subject}\n\n'+obj.message)
-			mail.quit()
-			return redirect('success')
-			
-	else: 
-		form = NewsletterForm() 
-	return render(request, 'dashboard/pdf_upload.html', {'form' : form})
-
+		mail=smtplib.SMTP('smtp.gmail.com',587)
+		mail.ehlo()
+		mail.starttls()
+		mail.login('Email','Password')
+		obj = Newsletter.objects.last()
+		mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
+		for i in range(len(mail_list)):
+		    mail.sendmail('etgaming2432@gmail.com',mail_list[i],f'Subject: {request.POST.get("subject")}\n\n'+request.POST.get('message'))
+		mail.quit()
+		return redirect('success')
