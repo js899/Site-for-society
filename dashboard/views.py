@@ -160,22 +160,23 @@ def event_image_view(request):
 
 
 def success(request): 
-	return HttpResponse('successfully uploaded') 
+	return HttpResponse('Successfully Uploaded') 
 
 
 
 # Sending PDF For Newsletter
 
-def pdf_view(request): 
+def show_newsletter(request):
+    return render(request, "dashboard/pdf_upload.html")
 
-	if request.method == 'POST': 
-		mail=smtplib.SMTP('smtp.gmail.com',587)
-		mail.ehlo()
-		mail.starttls()
-		mail.login('Email','Password')
-		obj = Newsletter.objects.last()
-		mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
-		for i in range(len(mail_list)):
-		    mail.sendmail('etgaming2432@gmail.com',mail_list[i],f'Subject: {request.POST.get("subject")}\n\n'+request.POST.get('message'))
-		mail.quit()
-		return redirect('success')
+def pdf_view(request): 
+    if request.method == 'POST':
+        mail=smtplib.SMTP('smtp.gmail.com',587)
+        mail.ehlo()
+        mail.starttls()
+        mail.login('etgaming2432@gmail.com','wEbsTEr333')
+        mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
+        for i in range(len(mail_list)):
+            mail.sendmail('etgaming2432@gmail.com',mail_list[i],f'Subject: {request.POST.get("subject")}\n\n'+request.POST.get('message'))
+        mail.quit()
+        return redirect('success')
