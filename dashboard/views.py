@@ -159,6 +159,6 @@ def pdf_view(request):
         mail.login('csigndec1@gmail.com','CsiGndec1@')
         mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
         for i in range(len(mail_list)):
-            mail.sendmail('etgaming2432@gmail.com',mail_list[i],f'Subject: {request.POST.get("subject")}\n\n'+request.POST.get('message'))
+            mail.sendmail('csigndec1@gmail.com',mail_list[i],f'Subject: {request.POST.get("subject")}\n\n'+request.POST.get('message'))
         mail.quit()
         return redirect('success')
