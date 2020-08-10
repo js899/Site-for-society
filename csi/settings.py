@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 #    'django.contrib.sites',
 #    'sorl.thumbnail',
+    'widget_tweaks',
     'newsletters',
     'django.contrib.admin',
     'django.contrib.auth',

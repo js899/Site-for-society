@@ -1,26 +1,11 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block main %}
-    <!-- <style>
-        #eventForm{
-            display: block;
-        }
-    </style> -->
-    <!-- <script type="text/javascript">
-        //document.getElementById("newEventButton").onclick = 
-        /* function open(){
-            document.getElementById("eventForm").style.display = "block";
-        }
-        
-        function close(){
-            document.getElementById("eventForm").style.display = "none";
-        } */
-    </script> -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <div>
         <!-- <button onclick="open()">Create Event</button> -->
         <h3>Create Event</h3>
-        <form id="eventForm" method="POST" enctype="multipart/form-data">
+        <form id="eventForm" method="POST" enctype="multipart/form-data" class="col-4">
             {% csrf_token %}
             {{ form|crispy }}
             <br>            
@@ -37,32 +22,16 @@
     {% endfor %}
     {% endif %}
 
-    <!-- <form id="post_form" method="post" action = "{% url 'addclicks' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% for hidden in detailForm.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
 
-        {% for field in detailForm %}
-            {{ field|as_crispy_field }} <br />
-        {% endfor %}
+    <br><a href = "{% url 'attendance' %}" target="blank_" style="font-size: 20px;" >Create attendance sheet</a>
 
-        {{ formset_image.management_form }}
-        {% for form in formset_image %}
-            {{ form }}
-        {% endfor %}
-        <button type="submit" name="submit">Submit</button>
-    </form> -->
-
-    <br><br><br><a href = "{% url 'attendance' %}" target="blank_" >Create attendance sheet</a>
-
-    <br><br><br><a href = "{% url 'image_upload' %}" target="blank_" >Upload Images</a>
+    <br><a href = "{% url 'image_upload' %}" target="blank_" style="font-size: 20px;">Upload Images</a>
     
-    <br><br><br><a href = "{% url 'show_newsletter' %}" target="blank_" >Send Newsletters</a>
+    <br><a href = "{% url 'show_newsletter' %}" target="blank_" style="font-size: 20px;">Send Newsletters</a>
     <br><br><br>
 
 {% endblock %}
-<!-- event/participant deletion -->
+<!-- event deletion -->
 <!-- <form method="POST">
             Do you want to delete the event <h4>{{ event.title }}</h4>? This would delete its participant database also.
             For confirmation please enter the name of the event here. {{ form|as_crispy_field }}
