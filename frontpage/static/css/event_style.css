@@ -1,0 +1,33 @@
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 600px) {
+  .event-register-form a:not(:first-child) {display: none;}
+  .reg-forms a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .event-register-form.responsive {position: relative;}
+  .reg-forms.responsive .fields {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .reg-forms.responsive .fields a {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 90%;
+  }
+}

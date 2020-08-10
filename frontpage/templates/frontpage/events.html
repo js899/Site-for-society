@@ -4,6 +4,9 @@
 <head>
     <title>Upcoming Events</title>
     <link rel="shortcut icon" href="{% static '/images/favicon.ico' %}"/>
+    <link type="text/css" href="static/css/event_style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style>
 
         html {
@@ -29,6 +32,16 @@
             })
         });
     </script>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("erf");
+          if (x.className === "reg-forms") {
+            x.className += " responsive";
+          } else {
+            x.className = "reg-forms";
+          }
+        }
+    </script>
 
 
 
@@ -37,11 +50,14 @@
     {% if events %}
         {% for event in events %}
         {% if forloop.last %}
-        <body background="{{ event.image.url }}">
-        <!-- <img src='{{ event.image.url }}' style="height: 100vh;width: 99vw;"> -->
-        <!-- <a href="#event-register-form">Register</a> -->
+        <body background="{{ event.image.url }}"
+            style="background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            ">
             
-            <div id="event-register-form" style="background-color: white; padding: 20px; opacity:0.94; width: max-content;">
+            <div class="event-register-form" id="erf" style="background-color: white; padding: 20px; opacity:0.94; width: max-content;">
                 <h1>{{ event.title}}</h1>
                 Will be held on {{ event.date }},
                 {{ event.time }},
@@ -77,25 +93,20 @@
                     <a href="" class="del-msg">&times;</a>
                 </div>
                 {% endfor %}
+
+
+                <div style="background-color: transparent; width: max-content;">
+                    <h2><a href="{% url 'show_gallery' %}" style="color: red;">Click to see Events Gallery</h2>
+                </div>
+
+
             </div>
         {% endif %}
         {% endfor %}
     {% else %}
         <h1>No active/upcoming events right now. If any event is going on currently, it's online registration must have been closed, offline registration maybe there at the venue.</h1>
     {% endif %}        
-
-    <br>
-    <br>
-    <br>
-    <br>
     
-    <div style="background-color: whitesmoke; width: max-content;">
-        <h2><a href="#" style="color: orangered;">Click to see past events</h2>
-    </div>
-
-    <div style="background-color: whitesmoke; width: max-content;">
-        <h2><a href="{% url 'show_gallery' %}" style="color: orangered;">Click to see Event Gallery</h2>
-    </div>
 
 </div>
 

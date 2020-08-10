@@ -52,7 +52,7 @@
         </script> 
         
         <div id = "particles-js">
-            <h1 style="color: white;">Welcome to the Computer Society Of India, Students Chapter, GNDEC.</h1>
+            <h1 style="color: white; margin-left: 20px;">Welcome to the Computer Society Of India, Students Chapter, GNDEC.</h1>
         </div>
         <script type="text/javascript" src="/static/js/particles.js"></script>
         <script type="text/javascript" src="/static/js/particles.min.js"></script>
@@ -76,15 +76,15 @@
         <!-- Newsletter Subscription -->
         
         <div class="main">
-        <form id="singular-form" action="{% url 'subscribe' %}" method="POST">
-            {% csrf_token %}
-            <button class="shown" type="button" id="subs">Subscribe To Newsletter</button>
-            <div id="email-input">
-                <input type="email" placeholder="E-mail" id="email" name="email">
-                <button type="button" >Add Me</button>
-            </div>
-            <div id="success">Congrats!</div>
-        </form>
+            <form id="singular-form" action="{% url 'subscribe' %}" method="POST">
+                {% csrf_token %}
+                <button class="shown" type="button" id="subs">Subscribe To Newsletter</button>
+                <div id="email-input">
+                    <input type="email" required="required" placeholder="Email" id="email" name="email">
+                    <button type="button" >Add Me</button>
+                </div>
+                <div id="success">Congrats!</div>
+            </form>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script  src="static/js/function.js"></script>
@@ -94,10 +94,10 @@
         <div class="footer-social-links">
             <h1 style="color: white; margin-left: 20px;">Connect</h1>
             <div style = "margin-left: 20px; font-size: 30px;">
-                <a href="https://www.facebook.com/csigndec/" title="Facebook" target="_blank" style="color: #3b5998;"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.facebook.com/csigndec/" title="Facebook" target="_blank" style="color: #0078FF;"><i class="fa fa-facebook"></i></a>
                 <a href="https://www.instagram.com/csi_gndec/" title="Instagram" target="_blank"><i class="fa fa-instagram" style="color: #DD2A7B;"></i></a>
                 <a href="#" title="Github" target="_blank"><i class="fa fa-github" style="color: #ad5c51;"></i></a>
-                <a href="#" title="LinkedIn" target="_blank"><i class="fa fa-linkedin" style="color: #0072b1;"></i></a>
+                <a href="https://www.linkedin.com/company/computer-society-of-india-student-chapter-gndec-ludhiana/about/" title="LinkedIn" target="_blank"><i class="fa fa-linkedin" style="color: #0072b1;"></i></a>
             </div>
         </div>
         
@@ -113,6 +113,7 @@
                 <a href="https://www.guru.gndec.ac.in" style="color: white;">Guru.gndec</a>
             </p>
 
+            <p>Made With <i class="fa fa-heart" style="color:red;"></i> By JS8 and Aman</p>
             <script>
                 var myIndex = 0;
                 carousel();    

@@ -25,7 +25,7 @@
 .main>#singular-form>button#subs {
     padding: 0;
     width: 100%;
-    color: #fbb016;
+    color: aliceblue;
     background-color: transparent;
     z-index: 3;
 }
@@ -78,7 +78,7 @@
 .main>#singular-form>button#subs {
     transition: all .6s ease;
     font-size: 30px;
-    background-color: red;
+    background-color: black;
     border: 2px solid black;
 }
 .main>#singular-form>#email-input {
