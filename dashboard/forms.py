@@ -55,5 +55,4 @@ class GalleryForm(forms.ModelForm):
 
 	class Meta: 
 		model = Gallery 
-		fields = ['name', 'event_Main_Img'] 
-
+		fields = ['name', 'event_Main_Img']

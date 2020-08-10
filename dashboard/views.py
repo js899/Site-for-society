@@ -1,10 +1,14 @@
 #from django.contrib.auth import logout
+# Send Newsletter
+import smtplib
+from django.contrib.auth import logout as lgout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from dashboard.forms import createEventForm
 from django.contrib import messages
 #from django.views.generic import TemplateView
 from dashboard.models import Event, Participant, Click
+from newsletters.models import NewsletterUser
 from dashboard.forms import registerForm
 from django.contrib.auth.decorators import login_required
 #from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,18 +16,15 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.forms.models import modelformset_factory
 from .forms import *
-#<<<<<<< HEAD
+
 import datetime 
-#=======
-from dateutil.parser import parse
 import datetime
-#>>>>>>> f94c014c3dc66f3e0751b6e8cfa3e2c616d57e60
 
 # Create your views here.
 
 def logout(request):
     if request.method == 'POST':
-        logout(request)
+        lgout(request)
         return HttpResponseRedirect('frontpage:index')
 
 # def check():
@@ -141,5 +142,23 @@ def event_image_view(request):
 
 
 def success(request): 
-	return HttpResponse('successfully uploaded') 
+	return HttpResponse('Successfully Uploaded') 
 
+
+
+# Sending PDF For Newsletter
+
+def show_newsletter(request):
+    return render(request, "dashboard/pdf_upload.html")
+
+def pdf_view(request): 
+    if request.method == 'POST':
+        mail=smtplib.SMTP('smtp.gmail.com',587)
+        mail.ehlo()
+        mail.starttls()
+        mail.login('csigndec1@gmail.com','CsiGndec1@')
+        mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
+        for i in range(len(mail_list)):
+            mail.sendmail('etgaming2432@gmail.com',mail_list[i],f'Subject: {request.POST.get("subject")}\n\n'+request.POST.get('message'))
+        mail.quit()
+        return redirect('success')
