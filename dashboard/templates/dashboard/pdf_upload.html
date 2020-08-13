@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 {% load static %}
 {% block main %}
 <!DOCTYPE html>
@@ -10,18 +11,10 @@
     <title>Send Newsletter</title>
 </head>
 <body>
-    <form action="{% url 'pdf_upload' %}" method="POST">
+    <form  id="news_doc_form" method="POST" enctype="multipart/form-data" class="col-4"> <!-- action="{% url 'pdf_upload' %}" -->
         {% csrf_token %}
-        <label for="subject">Subject: </label>
-        <input type="text" name="subject" id="subject" required>
-        <br><br>
-        <label for="message">Message</label>
-        <input type="text" name="message" id="message" required>
-        <br><br>
-        <label for="file">PDF</label>
-        <input type="file" name="file" id="file" required>
-        <br><br>
-        <input type="submit" value="Send">
+        {{ form|crispy }}
+        <button type="submit">Send !</button>
     </form>
 </body>
 </html>

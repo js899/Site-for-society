@@ -1,6 +1,7 @@
 #from django.contrib.auth import logout
 # Send Newsletter
 import smtplib
+from django.core.mail import send_mail, EmailMessage
 from django.contrib.auth import logout as lgout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
@@ -139,26 +140,3 @@ def event_image_view(request):
 	else: 
 		form = GalleryForm() 
 	return render(request, 'dashboard/event_image_form.html', {'form' : form}) 
-
-
-def success(request): 
-	return HttpResponse('Successfully Uploaded') 
-
-
-
-# Sending PDF For Newsletter
-
-def show_newsletter(request):
-    return render(request, "dashboard/pdf_upload.html")
-
-def pdf_view(request): 
-    if request.method == 'POST':
-        mail=smtplib.SMTP('smtp.gmail.com',587)
-        mail.ehlo()
-        mail.starttls()
-        mail.login('csigndec1@gmail.com','CsiGndec1@')
-        mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
-        for i in range(len(mail_list)):
-            mail.sendmail('csigndec1@gmail.com',mail_list[i],f'Subject: {request.POST.get("subject")}\n\n'+request.POST.get('message'))
-        mail.quit()
-        return redirect('success')
