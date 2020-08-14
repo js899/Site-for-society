@@ -8,12 +8,11 @@
         <form id="eventForm" method="POST" enctype="multipart/form-data" class="col-4">
             {% csrf_token %}
             {{ form|crispy }}
-            <br>            
             <button type="submit">Create !</button>
             <!-- <button onclick="close()">Hide</button> -->
         </form>
     </div>
-    
+    <br>
     {% if events %}
     <h3>Events created till now</h3>
     {% for event in events %}
@@ -23,11 +22,11 @@
     {% endif %}
 
 
-    <br><a href = "{% url 'attendance' %}" target="blank_" style="font-size: 20px;" >Create attendance sheet</a>
+    <br><a href = "{% url 'attendance' %}" target="_blank" style="font-size: 20px;" >Create attendance sheet</a>
 
-    <br><a href = "{% url 'image_upload' %}" target="blank_" style="font-size: 20px;">Upload Images</a>
+    <br><a href = "{% url 'image_upload' %}" target="_blank" style="font-size: 20px;">Upload Images</a>
     
-    <br><a href = "{% url 'show_newsletter' %}" target="blank_" style="font-size: 20px;">Send Newsletters</a>
+    <br><a href = "{% url 'show_newsletter' %}" target="_blank" style="font-size: 20px;">Send Newsletters</a>
     <br><br><br>
 
 {% endblock %}
