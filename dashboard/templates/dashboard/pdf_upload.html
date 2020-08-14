@@ -16,6 +16,9 @@
         {{ form|crispy }}
         <button type="submit">Send !</button>
     </form>
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
 </body>
 </html>
 {% endblock %}

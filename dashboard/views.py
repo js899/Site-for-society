@@ -18,7 +18,7 @@ from django.shortcuts import get_object_or_404
 from django.forms.models import modelformset_factory
 from .forms import *
 
-import datetime 
+import datetime
 import datetime
 
 # Create your views here.

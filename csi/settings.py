@@ -27,8 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['code.gndec.ac.in','127.0.0.1', 'localhost']
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'csigndec1@gmail.com'
+EMAIL_HOST_PASSWORD = 'CsiGndec1@'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -140,6 +140,7 @@ MEDIA_ROOT =  os.path.join('CSI_SITE', 'media')
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/frontpage/'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 #TEMPLATES_DIRS = (
 #    os.path.join(BASE_DIR, 'templates'),

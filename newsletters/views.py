@@ -25,55 +25,36 @@ def success(request):
 
 
 
-# Sending PDF For Newsletter
+# Sending Newsletter
 @login_required(login_url='frontpage')
-def show_newsletter(request):
-    form = NewsletterUploadForm()
-    args = {'form':form}
-    if form.is_valid():
-        form.save(request.POST)
-        messages.success(request, "Sent !")
-        return HttpResponseRedirect('')
-    else:
-        return render(request, "dashboard/pdf_upload.html", args)
-
-@login_required(login_url='frontpage')
-def pdf_view(request): 
+def upload_newsletter(request):
     if request.method == 'POST':
-        # mail=smtplib.SMTP('smtp.gmail.com',587)
-        # mail.ehlo()
-        # mail.starttls()
-        # mail.login('csigndec1@gmail.com','CsiGndec1@')
-        # mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
-        # for i in range(len(mail_list)):
-        #     mail.sendmail('csigndec1@gmail.com',mail_list[i],f'Subject: {request.POST.get("subject")}\n\n'+request.POST.get('message'))
-        # mail.quit()
-        # return redirect('success')
-        mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
         docform = NewsletterUploadForm(request.POST, request.FILES)
+        args = {'form':docform}
         if docform.is_valid():
-            docform.save(request.POST, commit=True)
-            df = NewsletterDoc.objects.last()
-            for i in range(len(mail_list)):
-                # send_mail(
-                #     'Monthly Magazine', #subject
-                #     'e-Magazine for CSI Magazine subscribers. To unsubscribe click here...',    #body
-                #     'csigndec1@gmail.com',  #from
-                #     mail_list[i],   #to
-                #         #attachment
-                #     fail_silently=False,    #True when deploy
-                # )
+            df = docform.save()
+            mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
+            for i in mail_list:
                 email = EmailMessage(
-                    df.subject, df.message, 'csigndec1@gmail.com', mail_list)
-                #email.attach_file(df.pdf)
+                    df.subject, df.message, 'csigndec1@gmail.com', i)
                 try:
                     attachment = df.pdf
                     email.attach(attachment.name, attachment.read(), attachment.content_type)
-                    email.send()
+                    email.send(fail_silently=False)
                 except Exception as e:
-                    print(str(e))
+                    messages.warning(request,str(e))
             messages.success(request, "Sent !")
             #return redirect('success')
             return HttpResponseRedirect('')
         else:
-            return render(request, 'dashboard/sending_newsletter.html')
+            messages.warning(request, "Not sent")
+            return HttpResponseRedirect('')
+        return render(request, 'dashboard/pdf_upload.html', args)
+    else:
+        messages.warning(request, "Dafa ho")
+        docform = NewsletterUploadForm()
+        args = {'form':docform}
+        return render(request, 'dashboard/pdf_upload.html', args)
+
+# @login_required(login_url='frontpage')
+# def pdf_view(request): 
