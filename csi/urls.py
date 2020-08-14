@@ -46,8 +46,8 @@ urlpatterns = [
     url(r'^attendance/$', dashviews.attendance, name = 'attendance'),
     url(r'^addclicks/$', dashviews.addEventClicks, name = 'addclicks'),
     path('image_upload', event_image_view, name = 'image_upload'),
-    url(r'^sending_newsletter/$', newsviews.upload_newsletter, name = 'sending_newsletter'),
-    #path('pdf_upload', newsviews.pdf_view, name = 'pdf_upload'), 
+    url('^sending_newsletter/$', newsviews.show_newsletter, name = 'show_newsletter'),
+    path('pdf_upload', newsviews.pdf_view, name = 'pdf_upload'), 
     path('success', newsviews.success, name = 'success'), 
 ]
 
