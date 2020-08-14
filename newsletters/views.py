@@ -32,7 +32,7 @@ def show_newsletter(request):
 @login_required(login_url='frontpage')
 def pdf_view(request): 
     if request.method == 'POST':
-        subject = request.POST.get('subject','')
+        subject = request.POST.get('subject')
         message = request.POST.get('message')
         mail_list = NewsletterUser.objects.filter().values_list("email", flat=True)
         email = EmailMessage(subject, message, 'csigndec1@gmail.com', mail_list)
@@ -44,3 +44,4 @@ def pdf_view(request):
         return redirect('success')
     else:
         return render(request, "dashboard/index.html")
+
