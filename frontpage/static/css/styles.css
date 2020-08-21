@@ -82,7 +82,7 @@ body {
     right: 0px;
     cursor: arrow;
     top: 61px;
-    color: black;
+    /* color: black; */
     display: none;
     background-color: white;
     padding-left: 4px;
@@ -152,7 +152,7 @@ body {
 .slides img{
     height: 25vh;
     width: 100%;
-    z-index: -1;
+    
 }
 
 .footer-social-links{

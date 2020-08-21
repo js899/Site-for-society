@@ -1,0 +1,53 @@
+/* @import url('https://googleapis.com/css?family:Lato|ZCOOL+KuaiLe&display=swap');
+
+
+body {
+	font-family: 'Lato', sans-serif;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100vh;	
+}
+
+.loader {
+    height: 50px;
+	animation: rotate 2s linear infinite;
+	transform-origin: bottom center;
+}
+
+.circle {
+	background-color: #1f168a;
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	animation: grow 1.5s linear infinite;
+	transform: scale(0);
+	margin: -10px;
+}
+
+.circle:nth-child(2) {
+	background-color: #a8caff;
+	animation-delay: 0.5s;
+}
+
+@keyframes rotate {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes grow {
+	50% {
+		transform: scale(1);
+	}
+}
+
+.mainpage {
+	
+	opacity: 0;
+	display: none;
+	transition: opacity 1s ease-in;
+	
+} */
