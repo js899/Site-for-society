@@ -11,22 +11,14 @@
 <body style="margin-left: 20px;margin-top:20px;">
     <form action="{% url 'pdf_upload' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-<<<<<<< HEAD
         <label for="subject">Subject: </label>
-        <input type="text" name="subject" id="subject" required >
-        <br><br>
-        <label for="message">Message</label>
-        <input type="text" name="message" id="message" required >
-=======
-        <label for="subject">Subject</label><br>
-        <input type="text" name="subject" id="subject">
+        <input type="text" name="subject" id="subject" required>
         <br><br>
         <label for="message">Message</label><br>
-        <textarea rows="5" cols="50" name="message" id="message"></textarea>
->>>>>>> 68b9d55a8214f365a47d91f7681d680c9c81c66d
+        <textarea rows="5" cols="50" name="message" id="message" required></textarea>
         <br><br>
-        <label for="file">Document</label><br>
-        <input type="file" name="file" id="file">
+        <label for="file">Document: </label>
+        <input type="file" name="file" id="file" required>
         <br><br>
         <button type="submit">Send !</button>
     </form>
