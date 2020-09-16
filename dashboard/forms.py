@@ -47,12 +47,3 @@ class ClicksForm(forms.ModelForm):
 #         model = Attendance
 #         fields = "__all__"
 
-
-
-# Uploading Images In Gallery
-
-class GalleryForm(forms.ModelForm): 
-
-	class Meta: 
-		model = Gallery 
-		fields = ['name', 'event_Main_Img']

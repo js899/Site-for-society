@@ -18,10 +18,6 @@ def subscribe(request):
         else:
             return render(request, "frontpage/index.html")
 
-def success(request): 
-	return HttpResponse('Successfully Sent!!!') 
-
-
 
 # Sending PDF For Newsletter
 @login_required(login_url='frontpage')
@@ -41,7 +37,7 @@ def pdf_view(request):
         pdf = request.FILES['file']
         email.attach(pdf.name, pdf.read(), pdf.content_type)
         email.send()
-        return redirect('success')
+        return HttpResponse('Successfully Sent!!!')
     else:
         return render(request, "dashboard/index.html")
 

@@ -125,18 +125,3 @@ def addEventClicks(request):
         args = {'detailForm': detailForm, 'formset': formset_image}
         return render(request, 'dashboard/attendance.html', args,
                 )#context_instance = RequestContext(request))
-
-
-
-# Uploading Images In Gallery 
-def event_image_view(request): 
-
-	if request.method == 'POST': 
-		form = GalleryForm(request.POST, request.FILES) 
-
-		if form.is_valid(): 
-			form.save() 
-			return redirect('success') 
-	else: 
-		form = GalleryForm() 
-	return render(request, 'dashboard/event_image_form.html', {'form' : form}) 

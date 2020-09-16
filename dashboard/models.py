@@ -53,11 +53,3 @@ class Click(models.Model):
     eventName = models.CharField(blank = False, max_length=30)
     body = models.CharField(max_length=30, null = True)
     images = models.FileField(upload_to='images/past_events_images/',null=True)
-
-#Uploading Images In Gallery    
-class Gallery(models.Model): 
-    name = models.CharField(max_length=50) 
-    event_Main_Img = models.ImageField(upload_to='images/') 
-    
-    def __str__(self):
-    	return self.name
