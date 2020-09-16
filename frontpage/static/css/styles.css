@@ -2,7 +2,7 @@ html {
     scroll-behavior: smooth;
 }
 body {
-    background-color: white;
+    /* background-color: white; */
     padding: 0;
     margin: 0;
     overflow-y: scroll;
@@ -126,7 +126,7 @@ body {
 }
 
 #particles-js {
-    background-color: #00001a;
+    background-image: linear-gradient(to bottom right, rgba(225, 101, 94, 0.8), rgb(255, 94, 0));
     display: flex;
     justify-content: left;
     align-items: center;
