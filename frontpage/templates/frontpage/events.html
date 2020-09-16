@@ -5,9 +5,10 @@
 <head>
     <title>Upcoming Events</title>
     <link rel="shortcut icon" href="{% static '/images/favicon.ico' %}"/>
-    <link type="text/css" href="static/css/event_style.css"/>
+    <link rel="stylesheet"  href="/static/css/event_style.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet"  href="/static/css/placeholder.css">
 
     <style>
 
@@ -19,7 +20,7 @@
             display: block;
         }
 
-    </style>
+    </style>        
 </head>
 
     <script>
@@ -49,6 +50,8 @@
 
 <body>
 
+
+    
     {% if events %}
         {% for event in events %}
         {% if forloop.last %}
@@ -58,59 +61,60 @@
             background-attachment: fixed;
             background-position: center;
             ">
-            
-            <div class="event-register-form" id="erf" style="background-color: white; padding: 20px; opacity:0.94; width: max-content;">
-                <h1>{{ event.title}}</h1>
-                Will be held on {{ event.date }},
-                {{ event.time }},
-                at {{ event.venue }}
 
-                <h3>Register here</h3>
-                <form class="reg-forms" method="POST">
-                    {% csrf_token %}
-                    <div style="width: fit-content;">
-                        <!-- {{ form|crispy }} -->
-                        {{ form.name|as_crispy_field }}
-                        <br>
-                        {{ form.branch|as_crispy_field }}
-                        <br>
-                        {{ form.year|as_crispy_field }}
-                        <br>
-                        {{ form.email|as_crispy_field }}
+                <div class="event-register-form" id="erf" style="background-color: white; padding: 20px; opacity:0.94; width: max-content;">
+
+                   
+
+                    <h1>{{ event.title}}</h1>
+                    Will be held on {{ event.date }},
+                    {{ event.time }},
+                    at {{ event.venue }}
+
+                    <h3>Register here</h3>
+                    <form class="reg-forms" method="POST">
+                        {% csrf_token %}
+                        <div style="width: fit-content;">
+                            <!-- {{ form|crispy }} -->
+                            {{ form.name|as_crispy_field }}
+                            <br>
+                            {{ form.branch|as_crispy_field }}
+                            <br>
+                            {{ form.year|as_crispy_field }}
+                            <br>
+                            {{ form.email|as_crispy_field }}
+
+                            <br>
+                            Not for participants.
+                            <br>
+                            {{ form.present|attr:"disabled"|as_crispy_field }}
+                        </div>
+                            
 
                         <br>
-                        Not for participants.
-                        <br>
-                        {{ form.present|attr:"disabled"|as_crispy_field }}
+                        <input type="submit" class="button" value="Ready">
+                    </form>
+
+                    {% for message in messages %}
+                    <div class="message">
+                        {{ message }}
+                        <a href="" class="del-msg">&times;</a>
                     </div>
-                        
+                    {% endfor %}
 
-                    <br>
-                    <input type="submit" class="button" value="Ready">
-                </form>
 
-                {% for message in messages %}
-                <div class="message">
-                    {{ message }}
-                    <a href="" class="del-msg">&times;</a>
+                    <div style="background-color: transparent; width: max-content;">
+                        <h2><a href="{% url 'show_gallery' %}" style="color: red;">Click to see Events Gallery</h2>
+                    </div>
+                    
+                
+
                 </div>
-                {% endfor %}
-
-
-                <div style="background-color: transparent; width: max-content;">
-                    <h2><a href="{% url 'show_gallery' %}" style="color: red;">Click to see Events Gallery</h2>
-                </div>
-
-
-            </div>
         {% endif %}
         {% endfor %}
     {% else %}
         <h1>No active/upcoming events right now. If any event is going on currently, it's online registration must have been closed, offline registration maybe there at the venue.</h1>
     {% endif %}        
-    
-
-</div>
 
 </body>
 

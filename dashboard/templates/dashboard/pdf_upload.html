@@ -1,4 +1,6 @@
+{% extends "base.html" %}
 {% load static %}
+{% block main %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,19 +8,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send Newsletter</title>
 </head>
-<body>
-    <form  action="{% url 'pdf_upload' %}" method="POST" enctype="multipart/form-data" >
+<body style="margin-left: 20px;margin-top:20px;">
+    <form action="{% url 'pdf_upload' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+<<<<<<< HEAD
         <label for="subject">Subject: </label>
         <input type="text" name="subject" id="subject" required >
         <br><br>
         <label for="message">Message</label>
         <input type="text" name="message" id="message" required >
+=======
+        <label for="subject">Subject</label><br>
+        <input type="text" name="subject" id="subject">
         <br><br>
-        <label for="file">PDF</label>
+        <label for="message">Message</label><br>
+        <textarea rows="5" cols="50" name="message" id="message"></textarea>
+>>>>>>> 68b9d55a8214f365a47d91f7681d680c9c81c66d
+        <br><br>
+        <label for="file">Document</label><br>
         <input type="file" name="file" id="file">
         <br><br>
         <button type="submit">Send !</button>
     </form>
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
 </body>
 </html>
+{% endblock %}

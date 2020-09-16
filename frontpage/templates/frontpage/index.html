@@ -4,132 +4,147 @@
     <head>
         <title>CSI OFFICIAL</title>
         <link rel="shortcut icon" href="{% static '/images/favicon.ico' %}"/>
-        <link rel="stylesheet" href="static/css/styles.css">
-        <link rel="stylesheet" href="static/css/style.css">
-        <script type="text/javascript" src="static/js/scripts.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/css/styles.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <script type="text/javascript" src="/static/js/scripts.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- <link rel="stylesheet" href="static/css/loader.css"> -->
     </head>
 
     <body>
-        <script>
-            window.onkeyup = function (event) {
-            if (event.keyCode == 27) {
-                close_function();
-            }
-        }
-        </script>
-        <div class = "topnav" id="myTopnav">
-            <!--<img src="/static/images/Untitled.png" style="height:45px; margin-left: 20px; top:0px; margin-top: 8px; float: right">-->
-            <a onclick="open_function()">Member Login</a>
-                <div id = "login-form">
-                    <form action = "{% url 'login' %}" method = "POST" class="loginfields">
-                    {% csrf_token %}
-                    {{form|crispy}}
-                            <input type="submit" class = "button" value="Let me in!">
-                    </form>
-                    <button class = "button" onclick="close_function()">Hide</button>
-                </div>  
-            <!--</a>-->
-            <a href="#about" class = "shide">About</a>
-            <a href="{% url 'events' %}" class = "shide" target="_blank" ss>Events</a>
-            <a href="javascript:void(0);" class="icon shide" onclick="myFunction()">
-                <i class="fa fa-bars"></i>
-            </a>
-            <!--    <a href="https://www.github.com/js899"><img src="/static/images/unnamed.png" style="height:32px; top: 0px; margin-top: -38px; margin-left: 635px"></a>   -->
-        </div>
-        <script>
-            function myFunction() {
-              var x = document.getElementById("myTopnav");
-              if (x.className === "topnav") {
-                x.className += " responsive";
-              } else {
-                x.className = "topnav";
-              }
+        
+        <!-- <div class="loader">
+            <div class="circle"></div>
+		    <div class="circle"></div>
+        </div> -->
 
+        
+        <!-- <section class="mainpage"> -->
             
-            }
-        </script> 
-        
-        <div id = "particles-js">
-            <h1 style="color: white; margin-left: 20px;">Welcome to the Computer Society Of India, Students Chapter, GNDEC.</h1>
-        </div>
-        <script type="text/javascript" src="/static/js/particles.js"></script>
-        <script type="text/javascript" src="/static/js/particles.min.js"></script>
-        <script type="text/javascript" src="/static/js/app.js"></script>
-
-        <div id = "about" class = "elements">
-            <img src="/static/images/download.png" style="height: 150px; float: right; margin-right: 20px; margin-top: 9px; position: relative">
-            <h1>About CSI</h1>
-            
-            <p>
-                CSI has been instrumental in guiding the Indian IT industry down the right path since its formative years. 
-                Today, the CSI has 72 chapters all over India, 511 student branches, and more than 100000 members including 
-                India's most famous IT industry leaders, brilliant scientists and dedicated academicians.
-            </p>
-
-            <p>    
-                For more details visit: <a href = "https://cse.gndec.ac.in/csi/">https://cse.gndec.ac.in/csi/</a>
-            </p>
-        </div>
-        
-        <!-- Newsletter Subscription -->
-        
-        <div class="main">
-            <form id="singular-form" action="{% url 'subscribe' %}" method="POST">
-                {% csrf_token %}
-                <button class="shown" type="button" id="subs">Subscribe To Magazine</button>
-                <div id="email-input">
-                    <input type="email" required="required" placeholder="Email" id="email" name="email">
-                    <button type="button" >Add Me</button>
-                </div>
-                <div id="success">Congrats!</div>
-            </form>
-        </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script  src="static/js/function.js"></script>
-        
-        <!-- Newsletter Subscription -->
-        
-        <div class="footer-social-links">
-            <h1 style="color: white; margin-left: 20px;">Connect</h1>
-            <div style = "margin-left: 20px; font-size: 30px;">
-                <a href="https://www.facebook.com/csigndec/" title="Facebook" target="_blank" style="color: #0078FF;"><i class="fa fa-facebook"></i></a>
-                <a href="https://www.instagram.com/csi_gndec/" title="Instagram" target="_blank"><i class="fa fa-instagram" style="color: #DD2A7B;"></i></a>
-                <a href="#" title="Github" target="_blank"><i class="fa fa-github" style="color: #ad5c51;"></i></a>
-                <a href="https://www.linkedin.com/company/computer-society-of-india-student-chapter-gndec-ludhiana/about/" title="LinkedIn" target="_blank"><i class="fa fa-linkedin" style="color: #0072b1;"></i></a>
-            </div>
-        </div>
-        
-        
-        
-        <div id = "footer">
-            <img class="slides" src='static/images/frontimage.jpg'>
-            <img class="slides" src='static/images/workbench.jpg'>
-            <img class="slides" src='static/images/fun.jpg'>
-            <p>
-                Related links:<br>
-                <a href="https://www.gndec.ac.in" style="color: white;">GNDEC</a><br>
-                <a href="https://www.guru.gndec.ac.in" style="color: white;">Guru.gndec</a>
-            </p>
-
-            <p>Made With <i class="fa fa-heart" style="color:red;"></i> By JS8 and Aman</p>
             <script>
-                var myIndex = 0;
-                carousel();    
-                function carousel() {
-                var i;
-                var x = document.getElementsByClassName("slides");
-                for (i = 0; i < x.length; i++) {
-                    x[i].style.display = "none";  
+                window.onkeyup = function (event) {
+                if (event.keyCode == 27) {
+                    close_function();
                 }
-                myIndex++;
-                if (myIndex > x.length) {myIndex = 1}    
-                x[myIndex-1].style.display = "block";  
-                setTimeout(carousel, 5000); // Change image every 2 seconds
-                }
+            }
             </script>
-        </div>
-        
+            <div class = "topnav" id="myTopnav">
+                <a onclick="open_function()">Member Login</a>
+                    <div id = "login-form">
+                        <form action = "{% url 'login' %}" method = "POST" class="loginfields">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                                <input type="submit" class = "button" value="Let me in!">
+                        </form>
+                        <button class = "button" onclick="close_function()">Hide</button>
+                    </div>  
+                <a href="#about" class = "shide">About</a>
+                <a href="{% url 'events' %}" class = "shide" target="_blank" ss>Events</a>
+                <a href="javascript:void(0);" class="icon shide" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+            <script>
+                function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+
+                
+                }
+            </script> 
+            
+            <div id = "particles-js">
+                <h1 style="color: white; margin-left: 20px; align-content: center; align-items: center;">Welcome to the Computer Society Of India, Students Chapter, GNDEC.</h1>
+            </div>
+            <script type="text/javascript" src="/static/js/particles.js"></script>
+            <!-- <script  src="/static/js/particles.min.js"></script> -->
+            <script type="text/javascript" src="/static/js/app.js"></script>
+
+            <div id = "about" class = "elements">
+                <img src="/static/images/download.png" style="height: 150px; float: right; margin-right: 20px; margin-top: 9px; position: relative">
+                <h1>About CSI</h1>
+                
+                <p>
+                    CSI has been instrumental in guiding the Indian IT industry down the right path since its formative years. 
+                    Today, the CSI has 72 chapters all over India, 511 student branches, and more than 100000 members including 
+                    India's most famous IT industry leaders, brilliant scientists and dedicated academicians.
+                </p>
+
+                <p>    
+                    For more details visit: <a href = "https://cse.gndec.ac.in/csi/">https://cse.gndec.ac.in/csi/</a>
+                </p>
+            </div>
+                        
+
+
+
+            <div class="main">
+                <form id="singular-form" action="{% url 'subscribe' %}" method="POST">
+                    {% csrf_token %}
+                    <button class="shown" type="button" id="subs">Subscribe To Magazine</button>
+                    <div id="email-input">
+                        <input type="email" required="required" placeholder="Email" id="email" name="email">
+                        <button type="button" >Add Me</button>
+                    </div>
+                    <div id="success">Congrats!</div>
+                </form>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script  src="static/js/function.js"></script>
+            
+            
+
+
+            <div class="footer-social-links">
+                <h1 style="color: white; margin-left: 20px;">Connect</h1>
+                <div style = "margin-left: 20px; font-size: 30px;">
+                    <a href="https://www.facebook.com/csigndec/" title="Facebook" target="_blank" style="color: #0078FF;"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/csi_gndec/" title="Instagram" target="_blank"><i class="fa fa-instagram" style="color: #DD2A7B;"></i></a>
+                    <a href="#" title="Github" target="_blank"><i class="fa fa-github" style="color: #ad5c51;"></i></a>
+                    <a href="https://www.linkedin.com/company/computer-society-of-india-student-chapter-gndec-ludhiana/about/" title="LinkedIn" target="_blank"><i class="fa fa-linkedin" style="color: #0072b1;"></i></a>
+                </div>
+            </div>
+            
+            
+            
+            <div id = "footer">
+                <!-- <img class="slides" src='static/images/frontimage.jpg'>
+                <img class="slides" src='static/images/workbench.jpg'>
+                <img class="slides" src='static/images/fun.jpg'> -->
+                <p>
+                    Related links:<br>
+                    <a href="https://www.gndec.ac.in" style="color: white;">GNDEC</a><br>
+                    <a href="https://www.guru.gndec.ac.in" style="color: white;">Guru.gndec</a>
+                </p>
+
+                <p>Made With <i class="fa fa-heart" style="color:red;"></i> By Jaideep and Aman, D3 CSE, GNDEC.</p>
+                <!-- <script>
+                    var myIndex = 0;
+                    carousel();    
+                    function carousel() {
+                    var i;
+                    var x = document.getElementsByClassName("slides");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";  
+                    }
+                    myIndex++;
+                    if (myIndex > x.length) {myIndex = 1}    
+                    x[myIndex-1].style.display = "block";  
+                    setTimeout(carousel, 3000);
+                    }
+                </script> -->
+            </div>
+        <!-- </section>
+
+        <script src="static/js/loader.js"></script> -->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     </body>
 </html>

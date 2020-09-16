@@ -19,7 +19,7 @@ def subscribe(request):
             return render(request, "frontpage/index.html")
 
 
-# Sending PDF For Newsletter
+# Sending Newsletter
 @login_required(login_url='frontpage')
 def show_newsletter(request):
     return render(request, 'dashboard/pdf_upload.html')
